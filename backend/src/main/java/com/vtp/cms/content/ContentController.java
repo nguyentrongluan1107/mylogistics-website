@@ -1,9 +1,10 @@
 package com.vtp.cms.content;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
-@RestController @RequestMapping("/api") public class ContentController {
+@Profile("!mock") @RestController @RequestMapping("/api") public class ContentController {
  private final ContentService service; public ContentController(ContentService service){this.service=service;}
  @GetMapping("/public/content") List<Content> published(@RequestParam(required=false) ContentType type,@RequestParam(defaultValue="en") String locale){return service.published(type,locale);}
  @GetMapping("/admin/content") List<Content> admin(){return service.adminList();}
