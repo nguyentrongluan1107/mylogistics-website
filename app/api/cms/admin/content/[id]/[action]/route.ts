@@ -1,0 +1,3 @@
+import { NextRequest, NextResponse } from "next/server";
+const allowed=new Set(["submit","return","publish","archive"]);
+export async function POST(_request:NextRequest,{params}:{params:Promise<{id:string;action:string}>}){const {id,action}=await params;if(!allowed.has(action))return NextResponse.json({message:"Unsupported action"},{status:400});const base=process.env.CMS_API_BASE_URL,key=process.env.CMS_API_KEY;if(!base||!key)return NextResponse.json({message:"CMS API is not configured"},{status:503});const r=await fetch(`${base}/api/admin/content/${encodeURIComponent(id)}/${action}`,{method:"POST",headers:{"X-CMS-API-Key":key,"X-Actor":"cms-admin"}});return NextResponse.json(await r.json(),{status:r.status})}
