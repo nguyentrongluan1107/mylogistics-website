@@ -1,9 +1,10 @@
 package com.vtp.cms.content;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.OffsetDateTime;
 import java.util.*;
-@Service @Transactional public class ContentService {
+@Profile("!mock") @Service @Transactional public class ContentService {
  private final ContentRepository repo; public ContentService(ContentRepository repo){this.repo=repo;}
  @Transactional(readOnly=true) public List<Content> adminList(){return repo.findAllByOrderByUpdatedAtDesc();}
  @Transactional(readOnly=true) public List<Content> published(ContentType type,String locale){return type==null?repo.findByStatusAndLocaleOrderBySortOrderAscUpdatedAtDesc(ContentStatus.PUBLISHED,locale):repo.findByStatusAndTypeAndLocaleOrderBySortOrderAscUpdatedAtDesc(ContentStatus.PUBLISHED,type,locale);}
