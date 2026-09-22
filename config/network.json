@@ -1,0 +1,12 @@
+{
+  "eyebrow": "OUR NETWORK",
+  "title": "Closer to every community.",
+  "description": "A growing nationwide network, connected by technology and powered by people who know every route.",
+  "cta": { "label": "Explore our network", "href": "/#branch-finder" },
+  "stats": [
+    { "key": "service-points", "value": "200+", "label": "Service points" },
+    { "key": "regions", "value": "15", "label": "Regions & states" },
+    { "key": "on-time", "value": "98%", "label": "On-time delivery" },
+    { "key": "visibility", "value": "24/7", "label": "Shipment visibility" }
+  ]
+}
